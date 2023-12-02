@@ -23,7 +23,7 @@ def main():
     y_pred = clf.predict(X_test)
 
     scores = cross_val_score(clf, X, y, cv=20)
-    print('Cross Validation Accuracy: {0}%'.format(scores.mean()*100))
+    print('Accuracy: {0}%'.format(scores.mean()*100))
     print('+/-: {0}%'.format(scores.std()))
 
 
