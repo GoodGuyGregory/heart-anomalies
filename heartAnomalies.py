@@ -15,17 +15,18 @@ def main():
     clf = tree.DecisionTreeClassifier(criterion='entropy', min_impurity_decrease=0.3)
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.5, random_state=100)
+        X, y, test_size=0.2)
 
-
+    # train on the training set
     clf = clf.fit(X_train, y_train)
+    # predict on the test set
     y_pred = clf.predict(X_test)
 
-    clf = svm.SVC(kernel='linear', C=1, random_state=42)
-    scores = cross_val_score(clf, X, y, cv=5)
-    print(scores)
+    scores = cross_val_score(clf, X, y, cv=20)
+    print('Cross Validation Accuracy: {0}%'.format(scores.mean()*100))
+    print('+/-: {0}%'.format(scores.std()))
 
-    print(accuracy_score(y_test, y_pred) * 100)
+
 
 
 main()
